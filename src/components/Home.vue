@@ -3,16 +3,20 @@
   <div class="container">
     <Menu />
     <h1>{{ msg }}</h1>
+
+    <AddPark />
   </div>
 </template>
 
 <script>
 import Menu from './Menu'
+import AddPark from './AddPark'
 
 export default {
   name: 'ParkingSpot',
   components: {
-    Menu
+    Menu,
+    AddPark
   },
   data () {
     return {
