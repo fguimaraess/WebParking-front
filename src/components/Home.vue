@@ -1,22 +1,16 @@
 <template>
-
   <div class="container">
-    <Menu />
-    <h1>{{ msg }}</h1>
-
-    <AddPark />
+    {{ msg }}
   </div>
 </template>
 
 <script>
 import Menu from './Menu'
-import AddPark from './AddPark'
 
 export default {
   name: 'ParkingSpot',
   components: {
-    Menu,
-    AddPark
+    Menu
   },
   data () {
     return {
