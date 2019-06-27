@@ -7,22 +7,27 @@ import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
+var childrenRoutes = [
+  {
+    path: '/AddParking',
+    name: 'AddParking',
+    component: AddParking
+  },
+  {
+    path: '/SearchParking',
+    name: 'SearchParking',
+    component: SearchParking
+  }
+]
+
 export default new Router({
+
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: Home
-    },
-    {
-      path: '/AddParking',
-      name: 'AddParking',
-      component: AddParking
-    },
-    {
-      path: '/SearchParking',
-      name: 'SearchParking',
-      component: SearchParking
+      component: Home,
+      children: childrenRoutes
     },
     {
       path: '*',

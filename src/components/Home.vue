@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    {{ msg }}
+    <Menu/>
+    <router-view/>
   </div>
 </template>
 
