@@ -7,18 +7,18 @@
       </v-layout>
 
       <v-layout>
-        <v-flex xs4 md4></v-flex>
-          <v-flex xs4 md4>
+        <v-flex xs3 md3></v-flex>
+          <v-flex xs5 md6>
           <v-text-field
             v-model="parkingName"
-            label="Nome"
+            label="Nome do Estabelecimento"
             required
         ></v-text-field>
         </v-flex>
       </v-layout>
 
-      <v-layout>
-        <v-flex xs2 md2></v-flex>
+       <v-layout>
+        <v-flex xs3 md3></v-flex>
         <v-flex xs5 md6>
           <v-autocomplete
           v-model="model"
@@ -30,6 +30,46 @@
           placeholder="Digite para buscar um endereço"
           return-object
       ></v-autocomplete>
+        </v-flex>
+      </v-layout>
+
+      <v-layout>
+        <v-flex xs2 md2></v-flex>
+        <v-flex xs2 md2>Preços:</v-flex>
+      </v-layout>
+
+      <v-layout>
+        <v-flex xs3 md3></v-flex>
+          <v-flex xs2 md2>
+          <v-text-field
+            v-model="firstHour"
+            label="Primeira hora"
+            required
+        ></v-text-field>
+        </v-flex>
+      
+        <v-flex xs2 md2>
+        <v-text-field
+          v-model="everyHour"
+          label="Demais horas"
+          required
+        ></v-text-field>
+        </v-flex>
+      
+          <v-flex xs2 md2>
+          <v-text-field
+            v-model="daily"
+            label="Diária"
+            required
+        ></v-text-field>
+        </v-flex>
+
+        <v-flex xs2 md2>
+          <v-text-field
+            v-model="monthly"
+            label="Mensal"
+            required
+        ></v-text-field>
         </v-flex>
       </v-layout>
 
@@ -53,9 +93,10 @@ const config = { headers: { 'Content-Type': 'application/json' } };
       Endereco: '',
       parkingName: '',
       address: '',
-      addressRules: [
-        v => !!v || 'Preencha o endereço!'
-      ],
+      firstHour: '',
+      everyHour: '',
+      daily: '',
+      monthly: ''
     }),
 
 computed: {
@@ -81,10 +122,10 @@ computed: {
 
     watch: {
       search (val) {
-        if (this.locations.length > 0) return
+        if (val.length == 0) return
 
         if(val.length > 3){
-          axios.get('http://localhost:5001/api/Location/GetSuggestions/'+val)
+          axios.get('http://parkingspot-back.herokuapp.com/api/Location/GetSuggestions/'+val)
           .then((result) => {
             result.data.forEach(location => {
               this.locations.push({
@@ -100,14 +141,19 @@ computed: {
     methods: {
       submit() {
         var data = {
-          "code": Math.floor(Math.random() * 1000000000000).toString(),
           "parkingName": this.parkingName,
-          "address": this.address,
-          "price": 0,
+          "address": this.model.value,
+           "price": {
+             "FirstHour" : this.firstHour,
+             "EveryHour" : this.everyHour,
+             "Daily" : this.daily,
+             "Monthly" : this.monthly
+           },
           "coordinates": "",
           "hasDiscount": true,
           "locationId": this.model.key
         }
+        
         axios.post('http://localhost:5001/api/Parking/add', JSON.stringify(data), config)
         .then((result) => {
           alert("Estacionamento cadastrado!")

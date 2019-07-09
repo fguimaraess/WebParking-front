@@ -2,11 +2,10 @@
 <v-list dense class="pt-0">
       <v-list-tile
         v-for="item in items"
-        :key="item.code">
-
+        :key="item.parkingName">
         <v-list-tile-content>
           <v-list-tile-title>
-            {{ item }}
+                {{ item }}
             </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
@@ -18,18 +17,17 @@ import axios from '../../../node_modules/axios'
  export default {
      name: 'Search',
     data: () => ({
-      items : []
-     
+      items : {}
     }),
     created() {
           this.getAll(this._data.items)
     },
     methods: {
       getAll(items) {
-        axios.get('http://localhost:5001/api/Parking/all')
+        axios.get('http://parkingspot-back.herokuapp.com/api/Parking/all')
         .then((result) => {
-            if(result.data.length > 0){
-                items.push(result.data);
+            if(result.data.length > 0) {
+                items = result.data;
             }
         })
       }
