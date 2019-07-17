@@ -4,6 +4,8 @@ import Home from '@/components/Home'
 import AddParking from '@/components/AddParking'
 import SearchParking from '@/components/SearchParking'
 import NotFound from '@/components/NotFound'
+import AddUser from '@/components/AddUser'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       name: 'Home',
       component: Home,
       children: childrenRoutes
+    },
+    {
+      path: '/AddUser',
+      name: 'AddUser',
+      component: AddUser
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '*',
