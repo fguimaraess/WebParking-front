@@ -1,6 +1,6 @@
 <template>
 <v-layout>
-  <v-flex xs3 md3 id="menu">
+  <v-flex xs2 md2 id="menu">
   <v-navigation-drawer permanent>
     <v-toolbar flat>
       <v-list>
@@ -51,8 +51,11 @@
 </script>
 
 <style>
-#menu {
+.container {
+  margin: 0 !important;
+}
+/* #menu {
     position: relative;
     right: 9%;
-}
+} */
 </style>

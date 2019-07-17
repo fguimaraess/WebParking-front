@@ -154,7 +154,7 @@ computed: {
           "locationId": this.model.key
         }
         
-        axios.post('http://localhost:5001/api/Parking/add', JSON.stringify(data), config)
+        axios.post('https://parkingspot-back.herokuapp.com/api/Parking/add', JSON.stringify(data), config)
         .then((result) => {
           alert("Estacionamento cadastrado!")
           window.location.reload()
