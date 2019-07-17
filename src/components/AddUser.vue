@@ -51,10 +51,11 @@
 
 
 <script>
-import axios from '../../../node_modules/axios'
+import axios from 'axios'
 const config = { headers: { 'Content-Type': 'application/json' } };
 
   export default {
+      name: 'AddUser',
     data: () => ({
         show1: false,
         valid: false,
@@ -72,7 +73,7 @@ const config = { headers: { 'Content-Type': 'application/json' } };
             "password" : this.password
         }
         
-        axios.post('http://localhost:5001/api/User/add', JSON.stringify(data), config)
+        axios.post('https://parkingspot-back.herokuapp.com/api/User/add', JSON.stringify(data), config)
         .then((result) => {
           alert("Usuário cadastrado!")
           window.location.reload()

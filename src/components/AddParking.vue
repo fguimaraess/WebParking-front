@@ -81,10 +81,11 @@
 
 
 <script>
-import axios from '../../../node_modules/axios'
+import axios from 'axios'
 const config = { headers: { 'Content-Type': 'application/json' } };
 
   export default {
+    name: 'AddParking',
     data: () => ({
       valid: false,
       locations: [],

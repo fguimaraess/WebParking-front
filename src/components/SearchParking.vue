@@ -49,9 +49,9 @@
 </template>
 
 <script>
-import axios from '../../../node_modules/axios'
+import axios from 'axios'
  export default {
-     name: 'Search',
+     name: 'SearchParking',
     data: () => ({
       items : []
     }),
