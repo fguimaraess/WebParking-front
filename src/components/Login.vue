@@ -13,8 +13,8 @@
   </div>
 </template>
 
-  <script>
-  export default {
+<script>
+export default {
   data () {
     return {
       email: 'felipe',
@@ -24,7 +24,7 @@
   },
   methods: {
     login () {
-      localStorage.set('userLogged', 'ok');
+      localStorage.set('userLogged', 'ok')
     }
   }
 }

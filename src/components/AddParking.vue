@@ -47,7 +47,7 @@
             required
         ></v-text-field>
         </v-flex>
-      
+
         <v-flex xs2 md2>
         <v-text-field
           v-model="everyHour"
@@ -55,7 +55,7 @@
           required
         ></v-text-field>
         </v-flex>
-      
+
           <v-flex xs2 md2>
           <v-text-field
             v-model="daily"
@@ -79,89 +79,88 @@
 </div>
 </template>
 
-
 <script>
 import axios from 'axios'
-const config = { headers: { 'Content-Type': 'application/json' } };
+const config = { headers: { 'Content-Type': 'application/json' } }
 
-  export default {
-    data: () => ({
-      valid: false,
-      locations: [],
-      model: null,
-      search: null,
-      Endereco: '',
-      parkingName: '',
-      address: '',
-      firstHour: '',
-      everyHour: '',
-      daily: '',
-      monthly: ''
-    }),
+export default {
+  data: () => ({
+    valid: false,
+    locations: [],
+    model: null,
+    search: null,
+    Endereco: '',
+    parkingName: '',
+    address: '',
+    firstHour: '',
+    everyHour: '',
+    daily: '',
+    monthly: ''
+  }),
 
-computed: {
-      fields () {
-        if (!this.model) return []
-        return Object.keys(this.model).map(key => {
-          return {
-            key: this.model["key"],
-            value: this.model["value"] || 'n/a'
-          }
-        })
-      },
-      items () {
-        return this.locations.map(entry => {
-          const Description = entry.value.length > 0
-            ? entry.value + '...'
-            : entry.value
-
-          return Object.assign({}, entry, { Description })
-        })
-      }
+  computed: {
+    fields () {
+      if (!this.model) return []
+      return Object.keys(this.model).map(key => {
+        return {
+          key: this.model['key'],
+          value: this.model['value'] || 'n/a'
+        }
+      })
     },
+    items () {
+      return this.locations.map(entry => {
+        const Description = entry.value.length > 0
+          ? entry.value + '...'
+          : entry.value
 
-    watch: {
-      search (val) {
-        if (val.length == 0) return
+        return Object.assign({}, entry, { Description })
+      })
+    }
+  },
 
-        if(val.length > 3){
-          axios.get('http://parkingspot-back.herokuapp.com/api/Location/GetSuggestions/'+val)
+  watch: {
+    search (val) {
+      if (val.length === 0) return
+
+      if (val.length > 3) {
+        axios.get('http://parkingspot-back.herokuapp.com/api/Location/GetSuggestions/' + val)
           .then((result) => {
             result.data.forEach(location => {
               this.locations.push({
                 key: location.locationId,
                 value: `${location.city}, ${location.state}, ${location.country}`
-              });
-            });
-          });
-        }
-      }
-    },
-
-    methods: {
-      submit() {
-        var data = {
-          "parkingName": this.parkingName,
-          "address": this.model.value,
-           "price": {
-             "FirstHour" : this.firstHour,
-             "EveryHour" : this.everyHour,
-             "Daily" : this.daily,
-             "Monthly" : this.monthly
-           },
-          "coordinates": "",
-          "hasDiscount": true,
-          "locationId": this.model.key
-        }
-        
-        axios.post('https://parkingspot-back.herokuapp.com/api/Parking/add', JSON.stringify(data), config)
-        .then((result) => {
-          alert("Estacionamento cadastrado!")
-          window.location.reload()
-        })
+              })
+            })
+          })
       }
     }
+  },
+
+  methods: {
+    submit () {
+      var data = {
+        'parkingName': this.parkingName,
+        'address': this.model.value,
+        'price': {
+          'FirstHour': this.firstHour,
+          'EveryHour': this.everyHour,
+          'Daily': this.daily,
+          'Monthly': this.monthly
+        },
+        'coordinates': '',
+        'hasDiscount': true,
+        'locationId': this.model.key
+      }
+
+      axios.post('https://parkingspot-back.herokuapp.com/api/Parking/add', JSON.stringify(data), config)
+        .then((result) => {
+          alert('Estacionamento cadastrado!')
+          window.location.reload()
+        })
+    }
   }
+}
 </script>
 
 <style scoped>

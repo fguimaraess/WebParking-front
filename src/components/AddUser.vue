@@ -16,7 +16,7 @@
     ></v-text-field>
     </v-flex>
     </v-layout>
-    
+
     <v-layout>
     <v-flex xs3 md3></v-flex>
         <v-flex xs5 md6>
@@ -41,7 +41,6 @@
     ></v-text-field>
     </v-flex>
     </v-layout>
-       
 
     </v-container>
     <v-btn @click="submit">Salvar</v-btn>
@@ -49,37 +48,36 @@
 </div>
 </template>
 
-
 <script>
-import axios from '../../../node_modules/axios'
-const config = { headers: { 'Content-Type': 'application/json' } };
+import axios from 'axios'
+const config = { headers: { 'Content-Type': 'application/json' } }
 
-  export default {
-    data: () => ({
-        show1: false,
-        valid: false,
-        model: null,
-        search: null,
-        username: '',
-        email: '',
-        password: '',
-    }),
-    methods: {
-      submit() {
-        var data = {
-            "username": this.username,
-            "email": this.email,
-            "password" : this.password
-        }
-        
-        axios.post('http://localhost:5001/api/User/add', JSON.stringify(data), config)
+export default {
+  data: () => ({
+    show1: false,
+    valid: false,
+    model: null,
+    search: null,
+    username: '',
+    email: '',
+    password: ''
+  }),
+  methods: {
+    submit () {
+      var data = {
+        'username': this.username,
+        'email': this.email,
+        'password': this.password
+      }
+
+      axios.post('http://localhost:5001/api/User/add', JSON.stringify(data), config)
         .then((result) => {
-          alert("Usuário cadastrado!")
+          alert('Usuário cadastrado!')
           window.location.reload()
         })
-      }
     }
   }
+}
 </script>
 
 <style scoped>

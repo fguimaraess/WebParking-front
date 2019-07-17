@@ -36,18 +36,18 @@
 </template>
 
 <script>
-  export default {
-      name: 'Menu',
-    data () {
-      return {
-        items: [
-          { title: 'Buscar', icon: 'search', route: 'SearchParking' },
-          { title: 'Adicionar Estacionamento', icon: 'dashboard', route: 'AddParking' },
-        ],
-        right: null
-      }
+export default {
+  name: 'Menu',
+  data () {
+    return {
+      items: [
+        { title: 'Buscar', icon: 'search', route: 'SearchParking' },
+        { title: 'Adicionar Estacionamento', icon: 'dashboard', route: 'AddParking' }
+      ],
+      right: null
     }
   }
+}
 </script>
 
 <style>

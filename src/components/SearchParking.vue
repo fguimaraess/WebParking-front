@@ -36,10 +36,6 @@
               <v-list-tile-title>Mensal: R${{ item.price.monthly }}</v-list-tile-title>
             </v-list-tile-content>
 
-
-            
-
-
           </v-list-group>
           </v-list>
 
@@ -50,32 +46,29 @@
 
 <script>
 import axios from 'axios'
- export default {
-     name: 'Search',
-    data: () => ({
-      items : []
-    }),
-    created() {
-          this.getAll(this._data.items)
-    },
-    methods: {
-      getAll(items) {
-        axios.get('https://parkingspot-back.herokuapp.com/api/Parking/all')
+export default {
+  name: 'Search',
+  data: () => ({
+    items: []
+  }),
+  created () {
+    this.getAll(this._data.items)
+  },
+  methods: {
+    getAll (items) {
+      axios.get('https://parkingspot-back.herokuapp.com/api/Parking/all')
         .then((result) => {
-            if(result.data.length > 0) {
-                result.data.forEach(parking => {
-                  if(parking.hasDiscount)
-                    parking.hasDiscount = "Sim"
-                  else
-                    parking.hasDiscount = "Não"
+          if (result.data.length > 0) {
+            result.data.forEach(parking => {
+              if (parking.hasDiscount) { parking.hasDiscount = 'Sim' } else { parking.hasDiscount = 'Não' }
 
-                  items.push(parking);
-                });
-            } else {
-              items.push("Nenhum estacionamento encontrado!")
-            }
+              items.push(parking)
+            })
+          } else {
+            items.push('Nenhum estacionamento encontrado!')
+          }
         })
-      }
     }
   }
+}
 </script>
