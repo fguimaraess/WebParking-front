@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <Menu/>
-    <router-view/>
+    Bem vindo ao <strong>Parking Spot!</strong> <br/>
+    
+    Pare de ficar perdido e encontre o estacionamento mais próximo do seu destino.
   </div>
 </template>
 

@@ -164,8 +164,9 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background-color: black;
+.container {
+  padding: 0 !important;
+  padding-top: 180px !important;
 }
 
 #add {
