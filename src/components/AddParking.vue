@@ -2,8 +2,8 @@
 <div id="add">
   <v-form ref="form" v-model="valid">
     <v-container>
-      <v-layout>
-        <v-flex xs12 md 4><h1>Novo Estacionamento</h1></v-flex>
+      <v-layout justify-center>
+        <h1>Novo Estacionamento</h1>
       </v-layout>
 
       <v-layout>
@@ -74,7 +74,10 @@
       </v-layout>
 
     </v-container>
-    <v-btn @click="submit">Salvar</v-btn>
+
+    <v-layout justify-center> 
+        <v-btn @click="submit">Salvar</v-btn>
+    </v-layout>
   </v-form>
 </div>
 </template>
