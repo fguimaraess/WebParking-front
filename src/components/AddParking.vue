@@ -127,12 +127,12 @@ export default {
       if (val.length === 0) return
 
       if (val.length > 3) {
-        axios.get('http://parkingspot-back.herokuapp.com/api/Location/GetSuggestions/' + val)
+        axios.get('http://localhost:5001/api/Location/GetSuggestions/' + val)
           .then((result) => {
             result.data.forEach(location => {
               this.locations.push({
                 key: location.locationId,
-                value: `${location.city}, ${location.state}, ${location.country}`
+                value: `${location.district}, ${location.city}, ${location.state}`
               })
             })
           })
@@ -156,7 +156,7 @@ export default {
         'locationId': this.model.key
       }
 
-      axios.post('https://parkingspot-back.herokuapp.com/api/Parking/add', JSON.stringify(data), config)
+      axios.post('http://localhost:5001/api/Parking/add', JSON.stringify(data), config)
         .then((result) => {
           alert('Estacionamento cadastrado!')
           window.location.reload()

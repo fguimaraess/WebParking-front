@@ -16,8 +16,10 @@
               {{ item.title }}
               </v-list-tile-title>
           </v-list-tile-content>
+
         </v-list-tile>
-      </v-list>
+
+  </v-list>
     </v-navigation-drawer>
     
     <v-toolbar fixed app :clipped-left="clipped">
@@ -31,7 +33,6 @@
 <script>
 export default {
   name: 'Menu',
-
   data () {
     return {
       drawer: false,
@@ -39,7 +40,9 @@ export default {
       items: [
         { title: 'Home', icon: 'home', route: 'Home' },
         { title: 'Buscar', icon: 'search', route: 'SearchParking' },
-        { title: 'Adicionar Estacionamento', icon: 'dashboard', route: 'AddParking' }
+        { title: 'Adicionar Estacionamento', icon: 'dashboard', route: 'AddParking' },
+        { title: 'Criar conta', icon: 'account_box', route: 'AddUser' }
+
       ],
       right: null
     }
@@ -56,4 +59,6 @@ export default {
     position: relative;
     right: 9%;
 } */
+
+
 </style>

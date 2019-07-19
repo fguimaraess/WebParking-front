@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     getAll (items) {
-      axios.get('https://parkingspot-back.herokuapp.com/api/Parking/all')
+      axios.get('http://localhost:5001/api/Parking/all')
         .then((result) => {
           if (result.data.length > 0) {
             result.data.forEach(parking => {
